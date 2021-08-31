@@ -47,6 +47,7 @@ function recursiveChunkEntryName (chunk) {
 }
 
 function _recursiveChunkGroup (chunkGroup) {
+  if (!chunkGroup) return undefined;
   if (chunkGroup instanceof EntryPoint) {
     return chunkGroup.name
   } else {
