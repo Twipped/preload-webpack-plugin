@@ -19,6 +19,7 @@ const defaultOptions = require('./lib/default-options')
 const determineAsValue = require('./lib/determine-as-value')
 const doesChunkBelongToHTML = require('./lib/does-chunk-belong-to-html')
 const extractChunks = require('./lib/extract-chunks')
+const joinPaths = require('./lib/join-paths')
 
 class PreloadPlugin {
   constructor (options) {
@@ -76,7 +77,7 @@ class PreloadPlugin {
         ? webpackPublicPath : ''
       : webpackPublicPath || ''
     for (const file of sortedFilteredFiles) {
-      const href = `${publicPath}${file}`
+      const href = joinPaths(publicPath, file)
 
       const attributes = {
         href,

@@ -133,6 +133,40 @@ module.exports = ({
       })
       compiler.outputFileSystem = fs
     })
+
+    it('should gracefully handle missing publicPath separators', function (done) {
+      const fs = new MemoryFileSystem()
+      const compiler = webpack({
+        entry: {
+          js: path.join(__dirname, 'fixtures', 'file.js')
+        },
+        output: {
+          path: OUTPUT_DIR,
+          filename: 'bundle.js',
+          chunkFilename: 'chunk.[chunkhash].js',
+          publicPath: '/a'
+        },
+        plugins: [
+          new HtmlWebpackPlugin(),
+          new PreloadPlugin()
+        ]
+      }, function (err, result) {
+        expect(err).toBeFalsy(err)
+        expect(result.compilation.errors.length).toBe(0,
+          result.compilation.errors.join('\n=========\n'))
+
+        const html = fs.readFileSync(path.join(OUTPUT_DIR, 'index.html'), 'utf-8')
+        const dom = new JSDOM(html)
+
+        const links = dom.window.document.head.querySelectorAll('link')
+        expect(links.length).toBe(1)
+        expect(links[0].getAttribute('rel')).toBe('preload')
+        expect(links[0].getAttribute('href')).toMatch(new RegExp('^/a/chunk\\.'))
+
+        done()
+      })
+      compiler.outputFileSystem = fs
+    })
   })
 
   describe(`${descriptionPrefix} When passed non-async chunks, it`, function () {
