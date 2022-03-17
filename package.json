@@ -27,7 +27,7 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "init-project": "yarn && cd test/e2e/webpack4 && yarn",
+    "postinstall": "npm install --prefix test/e2e/webpack4",
     "lint": "eslint --fix --format=codeframe .",
     "test": "npm run lint && node test/copySrc.js && jasmine test/unit/* test/e2e/*/index.js",
     "coverage": "nyc npm run test",
