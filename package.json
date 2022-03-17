@@ -21,7 +21,7 @@
     "resource hints"
   ],
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=14.0.0"
   },
   "scripts": {
     "init-project": "yarn && cd test/e2e/webpack4 && yarn",
