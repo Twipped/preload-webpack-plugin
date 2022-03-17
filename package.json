@@ -1,16 +1,19 @@
 {
-  "name": "@vue/preload-webpack-plugin",
+  "name": "@twipped/preload-webpack-plugin",
   "version": "2.0.0",
   "description": "A webpack plugin for injecting <link rel='preload|prefecth'> into HtmlWebpackPlugin pages, with async chunk support",
-  "author": "Addy Osmani <addy.osmani@gmail.com> (https://github.com/addyosmani)",
+  "author": "Jocelyn Badgley <joc@twipped.com> (http://twipped.com)",
+  "contributors": [
+    "Addy Osmani <addy.osmani@gmail.com> (https://github.com/addyosmani)"
+  ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/vuejs/preload-webpack-plugin/issues"
+    "url": "https://github.com/twipped/preload-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/vuejs/preload-webpack-plugin",
+  "homepage": "https://github.com/twipped/preload-webpack-plugin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vuejs/preload-webpack-plugin.git"
+    "url": "https://github.com/twipped/preload-webpack-plugin.git"
   },
   "keywords": [
     "webpack",
@@ -34,6 +37,9 @@
   "files": [
     "src"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-plugin-vue-libs": "^2.1.0",

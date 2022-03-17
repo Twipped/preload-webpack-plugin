@@ -2,27 +2,11 @@
 ============
 [![NPM version][npm-img]][npm-url]
 
-This is a fork of [preload-webpack-plugin](https://github.com/GoogleChromeLabs/preload-webpack-plugin) with a number of changes:
+This is a fork of [@vuejs/preload-webpack-plugin](https://github.com/vuejs/preload-webpack-plugin) with a number of changes:
 
-- Uses a combination of `htmlWebpackPluginBeforeHtmlProcessing` and `htmlWebpackPluginAlterAssetTags` hooks to inject links as objects rather than strings. This allows for more flexibility when the tags need to be altered by other plugins.
+- Fixes issue with collisions of directory separators coming from either the publicPath or the chunk file.
 
-- `include` option can be an object in the shape of `{ type?, chunks?, entries? }`. For example, to prefetch async chunks for a specific entry point:
-
-  ``` js
-  {
-    rel: 'prefetch',
-    include: {
-      type: 'asyncChunks',
-      entries: ['app']
-    }
-  }
-  ```
-
-- Added an `includeHtmlNames` option so that the plugin is only applied to a specific HTML file.
-
-- Drops support for webpack v3.
-
-- Drops support for Node < 6.
+- Drops support for Node < 12.
 
 ---
 
