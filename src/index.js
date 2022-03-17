@@ -35,9 +35,9 @@ class PreloadPlugin {
     })
 
     const htmlChunks = options.include === 'allAssets'
-    // Handle all chunks.
+      // Handle all chunks.
       ? extractedChunks
-    // Only handle chunks imported by this HtmlWebpackPlugin.
+      // Only handle chunks imported by this HtmlWebpackPlugin.
       : extractedChunks.filter((chunk) => doesChunkBelongToHTML({
         chunk,
         compilation,
@@ -84,21 +84,17 @@ class PreloadPlugin {
         rel: options.rel
       }
 
-      // If we're preloading this resource (as opposed to prefetching),
-      // then we need to set the 'as' attribute correctly.
-      if (options.rel === 'preload') {
-        attributes.as = determineAsValue({
-          href,
-          file,
-          optionsAs: options.as
-        })
+      attributes.as = determineAsValue({
+        href,
+        file,
+        optionsAs: options.as
+      })
 
-        // On the off chance that we have a cross-origin 'href' attribute,
-        // set crossOrigin on the <link> to trigger CORS mode. Non-CORS
-        // fonts can't be used.
-        if (attributes.as === 'font') {
-          attributes.crossorigin = ''
-        }
+      // On the off chance that we have a cross-origin 'href' attribute,
+      // set crossOrigin on the <link> to trigger CORS mode. Non-CORS
+      // fonts can't be used.
+      if (options.rel === 'preload' && attributes.as === 'font') {
+        attributes.crossorigin = ''
       }
 
       links.push({

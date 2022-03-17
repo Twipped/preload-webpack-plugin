@@ -400,10 +400,10 @@ module.exports = ({
         const links = dom.window.document.head.querySelectorAll('link')
         expect(links.length).toBe(2)
         expect(links[0].getAttribute('rel')).toBe('prefetch')
-        expect(links[0].hasAttribute('as')).toBeFalsy()
+        expect(links[0].getAttribute('as')).toBe('script')
         expect(links[0].getAttribute('href')).toBe('home.js')
         expect(links[1].getAttribute('rel')).toBe('prefetch')
-        expect(links[1].hasAttribute('as')).toBeFalsy()
+        expect(links[1].getAttribute('as')).toBe('script')
         expect(links[1].getAttribute('href')).toBe('main.js')
 
         done()
